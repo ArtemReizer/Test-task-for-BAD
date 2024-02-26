@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 
 public class FileService {
 
@@ -22,20 +23,11 @@ public class FileService {
         return finder.findLongestDescendingSequence(list);
     }
 
-    public long findMaxValue(List<String> list) {
+    public LongSummaryStatistics getStatistics(List<String> list) {
         return list.stream()
-                .parallel()
                 .mapToLong(Long::parseLong)
-                .max()
-                .orElseThrow(RuntimeException::new);
-    }
-
-    public long findMinValue(List<String> list) {
-        return list.stream()
                 .parallel()
-                .mapToLong(Long::parseLong)
-                .min()
-                .orElseThrow(RuntimeException::new);
+                .summaryStatistics();
     }
 
     public long findMedian(List<String> list) {
@@ -46,14 +38,6 @@ public class FileService {
                 .sorted()
                 .skip((long) (Math.ceil((double) size / 2)) - 1)
                 .limit(2 - size % 2)
-                .average()
-                .orElseThrow(RuntimeException::new);
-    }
-
-    public long findAverage(List<String> list) {
-        return (long) list.stream()
-                .parallel()
-                .mapToLong(Long::parseLong)
                 .average()
                 .orElseThrow(RuntimeException::new);
     }

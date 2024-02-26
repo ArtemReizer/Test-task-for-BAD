@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,30 +27,20 @@ class FileServiceTest {
     }
 
     @Test
-    void findMaxValue() {
-        long expected = 14L;
-        long result = fileService.findMaxValue(list);
-        assertEquals(expected, result);
-    }
-
-    @Test
-    void findMinValue() {
-        long expected = 1L;
-        long result = fileService.findMinValue(list);
-        assertEquals(expected, result);
+    void getStatistics() {
+        long expectedMax = 14L;
+        long expectedMin = 1L;
+        double expectedAve = 7.5;
+        LongSummaryStatistics statistics = fileService.getStatistics(list);
+        assertEquals(expectedMax, statistics.getMax());
+        assertEquals(expectedMin, statistics.getMin());
+        assertEquals(expectedAve, statistics.getAverage());
     }
 
     @Test
     void findMedian() {
         long expected = 7L;
-        long result = fileService.findMedian(list);
-        assertEquals(expected, result);
-    }
-
-    @Test
-    void findAverage() {
-        long expected = 7L;
-        long result = fileService.findAverage(list);
-        assertEquals(expected, result);
+        long median = fileService.findMedian(list);
+        assertEquals(expected, median);
     }
 }

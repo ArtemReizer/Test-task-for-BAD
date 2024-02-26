@@ -1,5 +1,6 @@
 import java.time.LocalTime;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,10 +9,11 @@ public class Main {
         FileService fileService = new FileService();
         SequenceFinder sequenceFinder = new SequenceFinder();
         List<String> list = fileService.readFileToList(fileName);
-        long maxValue = fileService.findMaxValue(list);
-        long minValue = fileService.findMinValue(list);
+        LongSummaryStatistics statistics = fileService.getStatistics(list);
+        long maxValue = statistics.getMax();
+        long minValue = statistics.getMin();
+        long average = (long) statistics.getAverage();
         long median = fileService.findMedian(list);
-        long average = fileService.findAverage(list);
         List<String> ascendingSequence = fileService.findAscendingSequence(list, sequenceFinder);
         List<String> descendingSequence = fileService.findDescendingSequence(list, sequenceFinder);
         System.out.printf("""
