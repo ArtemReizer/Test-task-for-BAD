@@ -36,7 +36,7 @@ public class FileService {
                 .parallel()
                 .mapToLong(Long::parseLong)
                 .sorted()
-                .skip((size / 2) - 1)
+                .skip((long) Math.ceil((double) size / 2) - 1)
                 .limit(2 - size % 2)
                 .average()
                 .orElseThrow(RuntimeException::new);
