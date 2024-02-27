@@ -12,8 +12,8 @@ public class Main {
         LongSummaryStatistics statistics = fileService.getStatistics(list);
         long maxValue = statistics.getMax();
         long minValue = statistics.getMin();
-        long average = (long) statistics.getAverage();
-        long median = fileService.findMedian(list);
+        double average = statistics.getAverage();
+        double median = fileService.findMedian(list);
         List<String> ascendingSequence = fileService.findAscendingSequence(list, sequenceFinder);
         List<String> descendingSequence = fileService.findDescendingSequence(list, sequenceFinder);
         System.out.printf("""
@@ -21,8 +21,8 @@ public class Main {
                         Info:
                         maxValue - %d
                         minValue - %d
-                        median - %d
-                        average - %d
+                        median - %f
+                        average - %f
                         longest ascending sequence - %s
                         longest descending sequence - %s
                                         

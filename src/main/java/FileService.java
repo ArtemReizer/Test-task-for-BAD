@@ -30,13 +30,13 @@ public class FileService {
                 .summaryStatistics();
     }
 
-    public long findMedian(List<String> list) {
+    public double findMedian(List<String> list) {
         long size = list.size();
-        return (long) list.stream()
+        return list.stream()
                 .parallel()
                 .mapToLong(Long::parseLong)
                 .sorted()
-                .skip((long) (Math.ceil((double) size / 2)) - 1)
+                .skip((size / 2) - 1)
                 .limit(2 - size % 2)
                 .average()
                 .orElseThrow(RuntimeException::new);
