@@ -11,7 +11,6 @@ class FileServiceTest {
     private final SequenceFinder finder = new SequenceFinder();
     private final List<String> list =
             Arrays.asList("1", "2", "5", "4", "3", "9", "8", "7", "6", "10", "11", "12", "13", "14");
-//    private List<String> list = Arrays.asList("1", "2", "3","4");
     @Test
     void findAscendingSequence() {
         List<String> expected = Arrays.asList("6", "10", "11", "12", "13", "14");
